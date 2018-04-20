@@ -10,7 +10,22 @@ Content-Type: application/zip
 
 ###
 
-PUT http://admin:admin@localhost:8080/share/service/cmm/model-service
+GET http://localhost:8080/alfresco/service/api/login?u=admin&pw=admin
+
+###
+
+PUT http://admin:admin@localhost:8080/alfresco/api/-default-/private/alfresco/versions/1/cmm/NBTCcrm?select=status
+
+{
+  "status": "ACTIVE"
+}
+
+###
+
+PUT http://localhost:8080/share/service/cmm/model-service?alf_ticket=TICKET_d1a5b54b2c9933a99c7cebc7a95d6f44be387021
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:59.0) Gecko/20100101 Firefox/59.0
 Content-Type: application/json
 
 {
