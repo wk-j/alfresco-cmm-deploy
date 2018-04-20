@@ -1,0 +1,39 @@
+version: "3.1"
+services:
+  alfresco:
+    image: phuchiss/alfresco
+    environment:
+      - LANG=en_US.UTF-8
+      - DB_KIND=postgresql
+      - DB_HOST=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=1234
+      - DB_NAME=postgres
+      - AMP_DIR_ALFRESCO=/alfresco/amps
+    volumes:
+      - "${WORKING_PATH}/logs:/alfresco/tomcat/logs"
+      - "${WORKING_PATH}/amp:/alfresco/amps"
+      - "${WORKING_PATH}/export:/alfresco/export"
+    ports:
+      - 445:445
+      - 7070:7070
+      - 8080:8080
+    networks:
+      - aspnetcoreapp-network
+
+  postgres:
+    image: postgres:9.3
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - aspnetcoreapp-network
+    # volumes:
+      # - "${WORKING_PATH}/database:/var/lib/postgresql/data"
+
+networks:
+  aspnetcoreapp-network:
+    driver: bridge

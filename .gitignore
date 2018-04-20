@@ -1,0 +1,14 @@
+node_modules
+dist
+
+bin
+obj
+packages
+tools
+
+.paket
+.env
+.cache
+.DS_Store
+
+working

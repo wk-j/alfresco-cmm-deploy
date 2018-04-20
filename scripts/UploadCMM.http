@@ -1,0 +1,25 @@
+POST http://admin:admin@localhost:8080/alfresco/s/api/cmm/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="Aspect.zip"
+Content-Type: application/zip
+
+< ../resources/NBTCcrm.zip
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+PUT http://admin:admin@localhost:8080/share/service/cmm/model-service
+Content-Type: application/json
+
+{
+  "arguments": {
+    "name": "NBTCcrm"
+  },
+  "data": {
+    "status": "ACTIVE"
+  },
+  "modelName": "NBTCcrm",
+  "operation": "activateModel"
+}
