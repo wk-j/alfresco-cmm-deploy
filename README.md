@@ -18,5 +18,5 @@ docker-compose up
 ## Usage
 
 ```bash
-bc-cmm-deploy http://admin:admin@localhost:8080/alfresco resources/NBTCcrm.zip
+bc-cmm-deploy http://localhost:8080/alfresco resources/NBTCcrm.zip
 ```

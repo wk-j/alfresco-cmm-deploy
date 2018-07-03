@@ -3,6 +3,7 @@
 open System.Net.Http
 open System.IO
 open System.Text
+open System.Net.Http.Headers
 
 let uploadUrl = sprintf "%s/s/api/cmm/upload"
 let activateUrl = sprintf "%s/api/-default-/private/alfresco/versions/1/cmm/%s?select=status"
@@ -16,6 +17,9 @@ let uploadModel baseUrl zip =
     content.Add(data, "file", Path.GetFileName zip)
 
     use message =
+        let base64String = System.Convert.ToBase64String(Encoding.ASCII.GetBytes("admin:admin"));
+        client.DefaultRequestHeaders.Authorization <- AuthenticationHeaderValue("Basic",base64String);
+
         client.PostAsync(uploadUrl baseUrl, content)
         |> Async.AwaitTask
         |> Async.RunSynchronously
@@ -29,6 +33,8 @@ let uploadModel baseUrl zip =
 
 let activateModel baseUrl name =
     use client = new HttpClient()
+    let base64String = System.Convert.ToBase64String(Encoding.ASCII.GetBytes("admin:admin"));
+    client.DefaultRequestHeaders.Authorization <- AuthenticationHeaderValue("Basic",base64String);
     let content = """{"status": "ACTIVE" }"""
 
     use request = new HttpRequestMessage(HttpMethod.Put, activateUrl baseUrl name)

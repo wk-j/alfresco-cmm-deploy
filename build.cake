@@ -4,7 +4,6 @@
 using PS = StartProcess.Processor;
 using ProjectParser;
 
-
 Task("Test").Does(() => {
     PS.StartProcess("dotnet run --project src/CmmDeploy http://admin:admin@localhost:8080/alfresco resources/NBTCcrm.zip");
 });
