@@ -5,7 +5,7 @@ Command line utility provide functionality for deploy content model
 ## Installation
 
 ```bash
-dotnet install tool -g BCircle.CmmDeploy
+dotnet tool install -g BCircle.CmmDeploy
 ```
 
 ## Start Alfresco

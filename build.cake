@@ -1,6 +1,9 @@
 #addin "wk.StartProcess"
+#addin "wk.ProjectParser"
 
 using PS = StartProcess.Processor;
+using ProjectParser;
+
 
 Task("Test").Does(() => {
     PS.StartProcess("dotnet run --project src/CmmDeploy http://admin:admin@localhost:8080/alfresco resources/NBTCcrm.zip");
@@ -28,9 +31,12 @@ Task("Publish-Nuget")
 Task("Install")
     .IsDependentOn("Pack")
     .Does(() => {
-        PS.StartProcess("rm /Users/wk/.dotnet/tools/bc-cmm-deploy");
-        PS.StartProcess("dotnet install tool -g BCircle.CmmDeploy --source ./publish");
+        var name = "CmmDeploy";
+        var info = Parser.Parse($"src/{name}/{name}.fsproj");
+        var currentDir = new System.IO.DirectoryInfo(".").FullName;
+        PS.StartProcess($"dotnet tool install -g BCircle.{name} --add-source {currentDir}/publish --version {info.Version}");
 });
+
 
 var target = Argument("target", "Default");
 RunTarget(target);
