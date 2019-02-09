@@ -11,5 +11,6 @@ tools
 .cache
 .DS_Store
 
-working
+.working
+.publish
 publish

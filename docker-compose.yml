@@ -11,9 +11,9 @@ services:
       - DB_NAME=postgres
       - AMP_DIR_ALFRESCO=/alfresco/amps
     volumes:
-      - "${WORKING_PATH}/logs:/alfresco/tomcat/logs"
-      - "${WORKING_PATH}/amp:/alfresco/amps"
-      - "${WORKING_PATH}/export:/alfresco/export"
+      - "${working}/logs:/alfresco/tomcat/logs"
+      - "${working}/amp:/alfresco/amps"
+      - "${working}/export:/alfresco/export"
     ports:
       - 445:445
       - 7070:7070
