@@ -5,7 +5,7 @@ Command line utility provide functionality for deploy content model
 ## Installation
 
 ```bash
-dotnet tool install -g BCircle.CmmDeploy
+dotnet tool install -g wk.CmmDeploy
 ```
 
 ## Start Alfresco
@@ -18,5 +18,5 @@ docker-compose up
 ## Usage
 
 ```bash
-bc-cmm-deploy http://localhost:8080/alfresco resources/NBTCcrm.zip
+wk-cmm-deploy http://localhost:8080/alfresco resources/NBTCcrm.zip
 ```

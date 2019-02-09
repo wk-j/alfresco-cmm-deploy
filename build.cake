@@ -33,7 +33,7 @@ Task("Install")
         var name = "CmmDeploy";
         var info = Parser.Parse($"src/{name}/{name}.fsproj");
         var currentDir = new System.IO.DirectoryInfo(".").FullName;
-        PS.StartProcess($"dotnet tool install -g BCircle.{name} --add-source {currentDir}/publish --version {info.Version}");
+        PS.StartProcess($"dotnet tool install -g wk.{name} --add-source {currentDir}/publish --version {info.Version}");
 });
 
 
