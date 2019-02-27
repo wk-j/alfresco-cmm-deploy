@@ -5,6 +5,7 @@ using PS = StartProcess.Processor;
 using ProjectParser;
 
 var publishDir = ".publish";
+var version = DateTime.Now.ToString("yy.MM.dd.HHmm");
 
 Task("Test").Does(() => {
     PS.StartProcess("dotnet run --project src/CmmDeploy http://admin:admin@localhost:8080/alfresco resources/NBTCcrm.zip");
@@ -12,8 +13,12 @@ Task("Test").Does(() => {
 
 Task("Pack").Does(() => {
     CleanDirectory(publishDir);
+    var settings = new DotNetCoreMSBuildSettings();
+    settings.Properties["Version"] = new string[] { version };
+
     DotNetCorePack("src/CmmDeploy", new DotNetCorePackSettings {
-        OutputDirectory = publishDir
+        OutputDirectory = publishDir,
+        MSBuildSettings = settings
     });
 });
 
@@ -35,7 +40,7 @@ Task("Install")
         var name = "CmmDeploy";
         var info = Parser.Parse($"src/{name}/{name}.fsproj");
         var currentDir = new System.IO.DirectoryInfo(".").FullName;
-        PS.StartProcess($"dotnet tool install -g wk.{name} --add-source {currentDir}/{publishDir} --version {info.Version}");
+        PS.StartProcess($"dotnet tool install -g wk.{name} --add-source {currentDir}/{publishDir} --version {version}");
 });
 
 var target = Argument("target", "Default");
