@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="NBTCcrm:NBTCcrm">
+    <author>Administrator</author>
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+    </imports>
+    <namespaces>
+        <namespace uri="NBTCcrm" prefix="NBTCcrm"/>
+    </namespaces>
+    <data-types/>
+    <constraints/>
+    <types/>
+    <aspects>
+        <aspect name="NBTCcrm:TciNo">
+            <title>เลขที่ร้องเรียน</title>
+            <properties>
+                <property name="NBTCcrm:TciNo">
+                    <title>เลขที่ร้องเรียน</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+        <aspect name="NBTCcrm:RequestNumber">
+            <title>เลขที่ใบงาน</title>
+            <properties>
+                <property name="NBTCcrm:RequestNumber">
+                    <title>เลขที่ใบงาน</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+        <aspect name="NBTCcrm:TciNoDate">
+            <title>วันที่ร้องเรียน</title>
+            <properties>
+                <property name="NBTCcrm:TciNoDate">
+                    <title>วันที่ร้องเรียน</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+        <aspect name="NBTCcrm:RequestStatus">
+            <title>สถานะรับเรื่องร้องเรียน</title>
+            <properties>
+                <property name="NBTCcrm:RequestStatus">
+                    <title>สถานะรับเรื่องร้องเรียน</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+        <aspect name="NBTCcrm:AttachedDate">
+            <title>วันที่แนบเอกสาร</title>
+            <properties>
+                <property name="NBTCcrm:AttachedDate">
+                    <title>วันที่แนบเอกสาร</title>
+                    <type>d:datetime</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+    </aspects>
+</model>

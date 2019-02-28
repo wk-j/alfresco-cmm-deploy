@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><module>
+   <id>CMM_NBTCcrm</id>
+   <auto-deploy>true</auto-deploy>
+   <configurations>
+      
+      <!-- Document Library config section -->
+      <config condition="DocumentLibrary" evaluator="string-compare" replace="false">
+      </config>
+
+      <!-- Form configuration section - type -->
+      
+      <!-- Form configuration section - aspect -->
+      
+      <!-- Entity form designer configuration -->
+      <config condition="FormDefinition" evaluator="string-compare">
+         <form-definition id="RequestNumber">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"NBTCcrm:RequestNumber","elementconfig":{"infoname":"RequestNumber","infolabel":"เลขที่ใบงาน","infotype":"d:text"},"label":"เลขที่ใบงาน [RequestNumber]","type":["property"]}]}]</form-definition>
+         <form-definition id="TciNoDate">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/datetime","id":"NBTCcrm:TciNoDate","elementconfig":{"infoname":"TciNoDate","infolabel":"วันที่ร้องเรียน","infotype":"d:datetime"},"label":"วันที่ร้องเรียน [TciNoDate]","type":["property"]}]}]</form-definition>
+         <form-definition id="TciNo">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"NBTCcrm:TciNo","elementconfig":{"infoname":"TciNo","infolabel":"เลขที่ร้องเรียน","infotype":"d:text"},"label":"เลขที่ร้องเรียน [TciNo]","type":["property"]}]}]</form-definition>
+         <form-definition id="AttachedDate">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/datetime","id":"NBTCcrm:AttachedDate","elementconfig":{"infoname":"AttachedDate","infolabel":"วันที่แนบเอกสาร","infotype":"d:datetime"},"label":"วันที่แนบเอกสาร [AttachedDate]","type":["property"]}]}]</form-definition>
+         <form-definition id="RequestStatus">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"NBTCcrm:RequestStatus","elementconfig":{"infoname":"RequestStatus","infolabel":"สถานะรับเรื่องร้องเรียน","infotype":"d:text"},"label":"สถานะรับเรื่องร้องเรียน [RequestStatus]","type":["property"]}]}]</form-definition>
+      </config>
+
+   </configurations>
+</module>

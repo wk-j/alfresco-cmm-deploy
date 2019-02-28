@@ -5,6 +5,10 @@
 
 Command line utility provide functionality for deploy content model
 
+- [x] Alfresco 5.1
+- [x] Alfresco 5.2
+- [ ] Alfresco 6.x
+
 ## Installation
 
 ```bash
@@ -14,5 +18,5 @@ dotnet tool install -g wk.CmmDeploy
 ## Usage
 
 ```bash
-wk-cmm-deploy http://localhost:8080/alfresco resources/NBTCcrm.zip
+wk-cmm-deploy http://localhost:8080/alfresco resource/ABC.zip
 ```
