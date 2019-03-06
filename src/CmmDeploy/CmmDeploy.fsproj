@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <PackAsTool>true</PackAsTool>
-    <ToolCommandName>wk-cmm-deploy</ToolCommandName>
-    <Version>0.1.0</Version>
-    <PackageId>wk.CmmDeploy</PackageId>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Program.fs" />
-  </ItemGroup>
+    <PropertyGroup>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>wk-cmm-deploy</ToolCommandName>
+        <PackageId>wk.CmmDeploy</PackageId>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="Program.fs" />
+    </ItemGroup>
 </Project>

@@ -8,7 +8,23 @@ open System.Net.Http.Headers
 let uploadUrl = sprintf "%s/s/api/cmm/upload"
 let activateUrl = sprintf "%s/api/-default-/private/alfresco/versions/1/cmm/%s?select=status"
 
-let uploadModel baseUrl zip =
+type Options = {
+    BaseUrl: string
+    User: string
+    Password: string
+    Zip: string
+}
+
+let basic user password =
+    let base64String = System.Convert.ToBase64String(Encoding.ASCII.GetBytes(sprintf "%s:%s" user password));
+    AuthenticationHeaderValue("Basic",base64String);
+
+let uploadModel options  =
+    let zip = options.Zip
+    let user = options.User
+    let password = options.Password
+    let baseUrl = options.BaseUrl
+
     let bytes = File.ReadAllBytes (zip: string)
     use client = new HttpClient()
     use content = new MultipartFormDataContent("--separator--")
@@ -17,8 +33,7 @@ let uploadModel baseUrl zip =
     content.Add(data, "file", Path.GetFileName zip)
 
     use message =
-        let base64String = System.Convert.ToBase64String(Encoding.ASCII.GetBytes("admin:admin"));
-        client.DefaultRequestHeaders.Authorization <- AuthenticationHeaderValue("Basic",base64String);
+        client.DefaultRequestHeaders.Authorization <- basic user password
 
         client.PostAsync(uploadUrl baseUrl, content)
         |> Async.AwaitTask
@@ -31,10 +46,13 @@ let uploadModel baseUrl zip =
 
     (result)
 
-let activateModel baseUrl name =
+let activateModel options name =
+    let user = options.User
+    let password = options.Password
+    let baseUrl = options.BaseUrl
+
     use client = new HttpClient()
-    let base64String = System.Convert.ToBase64String(Encoding.ASCII.GetBytes("admin:admin"));
-    client.DefaultRequestHeaders.Authorization <- AuthenticationHeaderValue("Basic",base64String);
+    client.DefaultRequestHeaders.Authorization <- basic user password
     let content = """{"status": "ACTIVE" }"""
 
     use request = new HttpRequestMessage(HttpMethod.Put, activateUrl baseUrl name)
@@ -51,17 +69,47 @@ let activateModel baseUrl name =
         |> Async.RunSynchronously
     (result)
 
+let rec parseArgs options args =
+    let next args = parseArgs options args
+
+    match args with
+    | "--url" :: xs ->
+        match xs with
+        | value :: xss ->
+            let newOptions = { options with BaseUrl = value }
+            parseArgs newOptions xss
+        | _ -> next xs
+    | "--user" :: xs ->
+        match xs with
+        | value :: xss ->
+            let newOptions = { options with User = value }
+            parseArgs newOptions xss
+        | _ -> next xs
+    | "--password"  :: xs ->
+        match xs with
+        | value :: xss ->
+            let newOptions = { options with Password = value}
+            parseArgs newOptions xss
+        | _ -> next xs
+    | [zip] -> { options with Zip = zip }
+    | _ -> options
+
+let defaultOptions() =
+    { BaseUrl = "http://localhost:8080/alfrsco"
+      User = "admin"
+      Password = "admin"
+      Zip = "" }
+
 [<EntryPoint>]
 let main argv =
-    if argv.Length = 2 then
-        let baseUrl = argv.[0]
-        let zip = argv.[1]
+    printfn "parse command line # %s" (System.String.Join(" ", argv))
+    let args = List.ofArray argv
+    let options = parseArgs (defaultOptions()) args
+    let name = Path.GetFileNameWithoutExtension options.Zip
 
-        let name = Path.GetFileNameWithoutExtension zip
+    uploadModel options
+    |> printfn "Upload => %s"
 
-        uploadModel baseUrl zip
-        |> printfn "Upload => %A"
-
-        activateModel baseUrl name
-        |> printfn "Activate => %A"
+    activateModel options name
+    |> printfn "Activate => %s"
     0

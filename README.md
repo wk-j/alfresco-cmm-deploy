@@ -18,5 +18,5 @@ dotnet tool install -g wk.CmmDeploy
 ## Usage
 
 ```bash
-wk-cmm-deploy http://localhost:8080/alfresco resource/ABC.zip
+wk-cmm-deploy --url http://localhost:8090/alfresco --user admin --password admin resource/ABC.zip
 ```
